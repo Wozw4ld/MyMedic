@@ -10,8 +10,4 @@
     <ProjectReference Include="..\MyMedic.DataAccess\MyMedic.DataAccess.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-
 </Project>
