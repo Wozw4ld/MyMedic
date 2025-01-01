@@ -1,4 +1,5 @@
 ﻿using MyMedic.DataAccess.Models;
+using MyMedic.DTO.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace MyMedic.DataAccess.Repositories.Interfaces
 	public interface IUserRepository : IRepository<UsersEntity>
 	{
 		Task<bool> IsEmailExistAsync(string email);
+		Task<UsersEntity?> GetUserByEmailAsync(string email); 
 	}
 }

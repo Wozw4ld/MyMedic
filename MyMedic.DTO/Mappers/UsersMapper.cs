@@ -22,6 +22,7 @@ namespace MyMedic.DTO.Mappers
 			return new UsersEntity
 			{
 				Id = Guid.NewGuid(),
+				UserEmail = userDto.UserEmail,
 				UserFullName = userDto.UserFullName,
 				UserPassword = hashPass,
 			};

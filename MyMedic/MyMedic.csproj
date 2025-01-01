@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="BCrypt.Net" Version="0.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
       <PrivateAssets>all</PrivateAssets>
@@ -23,6 +24,8 @@
   <ItemGroup>
     <ProjectReference Include="..\MyMedic.DataAccess.Repositories\MyMedic.DataAccess.Repositories.csproj" />
     <ProjectReference Include="..\MyMedic.DataAccess\MyMedic.DataAccess.csproj" />
+    <ProjectReference Include="..\MyMedic.DTO\MyMedic.DTO.csproj" />
+    <ProjectReference Include="..\MyMedic.Services\MyMedic.Services.csproj" />
   </ItemGroup>
 
 </Project>

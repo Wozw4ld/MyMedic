@@ -9,9 +9,9 @@ namespace MyMedic.Services.Interfaces
 {
 	public interface IUsersService
 	{
-		public Task<bool> IsEmailExistAsync();
-		public Task UserRegister();
-		public Task UserLogin();
-		public Task<UserDto> GetUserByIdAsync();
+	//	public Task<bool> IsEmailExistAsync(string userEmail);
+		public Task<string> UserRegister(UserRegisterDto user);
+		public Task<string> UserLogin(UserLoginDto user);
+		public Task<UserDto> GetUserByIdAsync(Guid userId);
 	}
 }

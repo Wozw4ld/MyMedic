@@ -35,6 +35,11 @@ namespace MyMedic.DataAccess.Repositories.Repositories
 		  .FirstOrDefaultAsync(u => u.Id == id);
 		}
 
+		public async Task<UsersEntity> GetUserByEmailAsync(string email)
+		{
+			return await _context.Users.FirstOrDefaultAsync(u => u.UserEmail == email);
+		}
+
 		public async Task<bool> IsEmailExistAsync(string email)
 		{
 			var checkEmail =  await _context.Users

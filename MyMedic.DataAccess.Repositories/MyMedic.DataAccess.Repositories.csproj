@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MyMedic.DataAccess\MyMedic.DataAccess.csproj" />
+    <ProjectReference Include="..\MyMedic.DTO\MyMedic.DTO.csproj" />
   </ItemGroup>
 
 </Project>

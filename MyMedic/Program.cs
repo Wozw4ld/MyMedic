@@ -3,15 +3,44 @@ using MyMedic.DataAccess;
 using MyMedic.DataAccess.Repositories.Interfaces;
 using MyMedic.DataAccess.Repositories.Repositories;
 using MyMedic.Services.Implementations;
-using MyMedic.Services.Interfaces;
 
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using MyMedic.Services.Interfaces;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using MyMedic.DTO.PasswordHasherService;
+using MyMedic.DTO.Mappers;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUsersService, UserService>();
+builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<UsersMapper>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+	.AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+	{
+		options.TokenValidationParameters = new()
+		{
+			ValidateIssuer = false,
+			ValidateAudience = false,
+			ValidateLifetime = true,
+			ValidateIssuerSigningKey = true,
+			IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("justsecretfortestnotmoresdsds111"))
+		};
+		options.Events = new JwtBearerEvents
+		{
+			OnMessageReceived = context =>
+			{
+				context.Token = context.Request.Cookies["jwt"];
+				return Task.CompletedTask;
+			}
+		};
+	});
 builder.Services.AddDbContext<MyMedicDbContext>(
 	options =>
 	{
