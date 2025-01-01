@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
+    <Folder Include="Implementations\" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MyMedic.DataAccess\MyMedic.DataAccess.csproj" />
+    <ProjectReference Include="..\MyMedic.DTO\MyMedic.DTO.csproj" />
   </ItemGroup>
 
 </Project>
