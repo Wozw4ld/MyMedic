@@ -17,8 +17,11 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IUsersService, UserService>();
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddScoped<UsersMapper>();
+builder.Services.AddScoped<ProductsMapper>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

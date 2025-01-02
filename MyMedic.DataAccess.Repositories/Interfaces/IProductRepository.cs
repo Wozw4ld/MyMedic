@@ -9,7 +9,8 @@ namespace MyMedic.DataAccess.Repositories.Interfaces
 {
 	public interface IProductRepository : IRepository<ProductsEntity>
 	{
-		Task<IEnumerable<ProductsEntity>> GetByCategoryAsync(Guid categoryId);
-		Task<IEnumerable<ProductsEntity>> GetPopularAsync(int count);
+		Task<IQueryable<ProductsEntity>> GetByCategoryAsync(Guid categoryId);
+		Task<IQueryable<ProductsEntity>> GetPopularAsync(int count);
+		Task<IQueryable<ProductsEntity>> GetAllAsync();
 	}
 }

@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyMedic.DataAccess", "MyMed
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyMedic.DataAccess.Repositories", "MyMedic.DataAccess.Repositories\MyMedic.DataAccess.Repositories.csproj", "{202CB315-8972-4E9F-A07B-40EC374F53B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMedic.Services", "MyMedic.Services\MyMedic.Services.csproj", "{07CF18BD-3434-4FC9-BA4E-F07F3FA7D4A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyMedic.Services", "MyMedic.Services\MyMedic.Services.csproj", "{07CF18BD-3434-4FC9-BA4E-F07F3FA7D4A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMedic.DTO", "MyMedic.DTO\MyMedic.DTO.csproj", "{78636319-9F94-4A42-9943-5903EF481542}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyMedic.DTO", "MyMedic.DTO\MyMedic.DTO.csproj", "{78636319-9F94-4A42-9943-5903EF481542}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpers", "Helpers\Helpers.csproj", "{20C4FF05-68A3-4868-BE45-6A42FB73F791}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{78636319-9F94-4A42-9943-5903EF481542}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78636319-9F94-4A42-9943-5903EF481542}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78636319-9F94-4A42-9943-5903EF481542}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20C4FF05-68A3-4868-BE45-6A42FB73F791}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20C4FF05-68A3-4868-BE45-6A42FB73F791}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20C4FF05-68A3-4868-BE45-6A42FB73F791}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20C4FF05-68A3-4868-BE45-6A42FB73F791}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

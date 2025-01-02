@@ -28,4 +28,8 @@
     <ProjectReference Include="..\MyMedic.Services\MyMedic.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\products\" />
+  </ItemGroup>
+
 </Project>

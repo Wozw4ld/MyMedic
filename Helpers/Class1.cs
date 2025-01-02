@@ -1,4 +1,4 @@
-﻿namespace MyMedic.DTO
+﻿namespace Helpers
 {
 	public class Class1
 	{

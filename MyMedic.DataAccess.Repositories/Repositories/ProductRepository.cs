@@ -21,21 +21,27 @@ namespace MyMedic.DataAccess.Repositories.Repositories
 			await _context.Products.AddAsync(entity);
 		}
 
-		public async Task<IEnumerable<ProductsEntity>> GetByCategoryAsync(Guid categoryId)
+		public async Task<IQueryable<ProductsEntity>> GetAllAsync()
 		{
-			return await _context.Products
-			 .Where(p => p.ProductCategoryId == categoryId)
-			 .ToListAsync();
+			return  _context.Products.AsQueryable();
+		}
+
+		public async Task<IQueryable<ProductsEntity>> GetByCategoryAsync(Guid categoryId)
+		{
+			return  _context.Products
+			 .Where(p => p.ProductCategoryId == categoryId).AsQueryable();
+
 		}
 
 		public async Task<ProductsEntity> GetByIdAsync(Guid id)
 		{
-			return await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
+			var product =  await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
+			return product;
 		}
 
-		public async Task<IEnumerable<ProductsEntity>> GetPopularAsync(int count)
+		public async Task<IQueryable<ProductsEntity>> GetPopularAsync(int count)
 		{
-			throw new NotImplementedException();
+			return   _context.Products.AsQueryable();
 		}
 
 		public async Task RemoveAsync(Guid id)
