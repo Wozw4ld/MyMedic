@@ -26,7 +26,7 @@ namespace MyMedic.DataAccess.Repositories.Repositories
 		public async Task<IEnumerable<CategoriesEntity>> GetAllCategoriesAsync()
 		{
 			return await _context.Categories
-				.Where(c => c.ParentCategoryId == null)
+				
 				.Include(c => c.SubCategories)
 				.ToListAsync();
  				

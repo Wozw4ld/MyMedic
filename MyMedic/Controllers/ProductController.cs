@@ -29,7 +29,13 @@ namespace MyMedic.Controllers
 			var products = await _productService.GetAllProducts(1,10);
 			return Ok(products);
 		}
+		[HttpGet("getByCategory")]
+		public async Task<IActionResult> GetByCategory(Guid categoryId)
+		{
+			var products = await _productService.GetByCategory(categoryId, 1, 10);
+			return Ok(products);
+		}
 
-		
+
 	}
 }

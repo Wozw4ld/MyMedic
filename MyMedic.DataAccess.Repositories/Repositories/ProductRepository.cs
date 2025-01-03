@@ -29,7 +29,7 @@ namespace MyMedic.DataAccess.Repositories.Repositories
 		public async Task<IQueryable<ProductsEntity>> GetByCategoryAsync(Guid categoryId)
 		{
 			return  _context.Products
-			 .Where(p => p.ProductCategoryId == categoryId).AsQueryable();
+			 .Where(p => p.ProductCategoryId == categoryId).Include(x => x.Images).AsQueryable();
 
 		}
 
