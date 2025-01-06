@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,8 @@ namespace MyMedic.DataAccess.Models
 		public decimal TotalAmount { get; set; } = decimal.Zero;
 		public string UserPhone { get; set; } = string.Empty;
 		public string UserAddress {  get; set; } = string.Empty;	
+		public DateTime CreatedAt { get; set; }
+		public OrderStatus Status { get; set; } = OrderStatus.NotSent;
 		public bool Paid { get; set; } = false;
 		
 

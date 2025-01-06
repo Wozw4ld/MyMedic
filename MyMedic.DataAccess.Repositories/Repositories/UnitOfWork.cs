@@ -14,6 +14,7 @@ namespace MyMedic.DataAccess.Repositories.Repositories
 		public IUserRepository Users { get; }
 
 		public ICategoryRepository Categories { get; }
+		public IOrderRepository Orders { get; }
 		private readonly MyMedicDbContext _context;
 
 		public UnitOfWork(MyMedicDbContext context)
@@ -22,6 +23,7 @@ namespace MyMedic.DataAccess.Repositories.Repositories
 			Products  = new ProductRepository(context);
 			Users = new UsersRepository(context);
 			Categories = new CategoriesRepository(context);
+			Orders = new OrdersRepository(context);	
 		}
 		public void Dispose()
 		{

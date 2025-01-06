@@ -8,6 +8,7 @@ namespace MyMedic.DataAccess.Repositories.Interfaces
 {
 	public interface IUnitOfWork : IDisposable
 	{
+		IOrderRepository Orders { get; }
 		IProductRepository Products { get; }
 		IUserRepository Users { get; }
 		ICategoryRepository Categories { get; }
