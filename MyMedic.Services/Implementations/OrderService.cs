@@ -1,4 +1,6 @@
-﻿using MyMedic.DataAccess.Repositories.Interfaces;
+﻿using Helpers;
+using Microsoft.EntityFrameworkCore;
+using MyMedic.DataAccess.Repositories.Interfaces;
 using MyMedic.DTO.Dto;
 using MyMedic.DTO.Mappers;
 using MyMedic.Services.Interfaces;
@@ -27,21 +29,56 @@ namespace MyMedic.Services.Implementations
 			await _unitOfWork.Orders.AddAsync(orderEntity);
 		}
 
-		public Task<IEnumerable<OrderDto>> GetAllOrders(bool byDate = false, bool byPrice = false, bool byStatus = false, bool byPaid = false)
+		public async Task<IEnumerable<OrderDto>> GetAllOrders(
+			bool byDate = false, 
+			bool byPrice = false, 
+			OrderStatus? byStatus = null, 
+			bool byPaid = false)
 		{
-			//var result = _unitOfWork.Orders.GetAllOrders();
-			//var ordersList = result.OrderBy(x => x.)
-			throw new NotImplementedException();
+		var result = _unitOfWork.Orders.GetAllOrders();
+			if(byDate)
+			
+				result.OrderBy(x => x.CreatedAt);
+
+			if (byPrice) 
+				result.OrderBy(x => x.TotalAmount);
+			if(byStatus.HasValue) 
+				result.OrderBy(x => x.Status == byStatus);
+			if(byPaid)
+				result.OrderBy(x => x.Paid);
+			var ordersList = await result.Select(x => _ordersMapper.ToDto(x)).ToListAsync();
+
+			return ordersList;
+
 		}
 
-		public Task<IEnumerable<OrderDto>> GetUserOrders(Guid userId, bool byDate = false, bool byPrice = false, bool byStatus = false, bool byPaid = false)
+		public async Task<IEnumerable<OrderDto>> GetUserOrders(
+			Guid userId, 
+			bool byDate = false, 
+			bool byPrice = false, 
+			OrderStatus? byStatus = null, 
+			bool byPaid = false)
 		{
-			throw new NotImplementedException();
+			var result = _unitOfWork.Orders.GetUserOrders(userId);
+			if (byDate)
+
+				result.OrderBy(x => x.CreatedAt);
+
+			if (byPrice)
+				result.OrderBy(x => x.TotalAmount);
+			if (byStatus.HasValue)
+				result.OrderBy(x => x.Status == byStatus);
+			if (byPaid)
+				result.OrderBy(x => x.Paid);
+			var ordersList = await result.Select(x => _ordersMapper.ToDto(x)).ToListAsync();
+
+			return ordersList;
 		}
 
-		public Task RemoveOrder(OrderDto orderDto)
+		public async Task RemoveOrder(OrderDto orderDto)
 		{
-			throw new NotImplementedException();
+			
+			await _unitOfWork.Orders.RemoveAsync(orderDto.Id);
 		}
 
 		public Task UpdateOrder(OrderDto orderDto)
