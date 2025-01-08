@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Helpers\Helpers.csproj" />
     <ProjectReference Include="..\MyMedic.DataAccess.Repositories\MyMedic.DataAccess.Repositories.csproj" />
+    <ProjectReference Include="..\MyMedic.DataAccess\MyMedic.DataAccess.csproj" />
     <ProjectReference Include="..\MyMedic.DTO\MyMedic.DTO.csproj" />
   </ItemGroup>
 

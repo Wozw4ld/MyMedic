@@ -30,7 +30,10 @@ namespace MyMedic.Services.Implementations
 
 		public async Task<string> AddProductAsync(ProductCreateDto productDto)
 		{
+			var order = new OrdersEntity
+			{
 
+			};
 			if (productDto.Images == null || !productDto.Images.Any())
 			{
 				return "No images provided.";

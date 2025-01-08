@@ -25,6 +25,10 @@ namespace MyMedic.DataAccess.Repositories.Repositories
 		{
 			return  _context.Products.AsQueryable();
 		}
+		//public async Task<IEnumerable<ProductsEntity>> GetByIds()
+		//{
+
+		//}
 
 		public async Task<IQueryable<ProductsEntity>> GetByCategoryAsync(Guid categoryId)
 		{
@@ -56,6 +60,17 @@ namespace MyMedic.DataAccess.Repositories.Repositories
 		public async Task UpdateAsync(ProductsEntity entity)
 		{
 			_context.Products.Update(entity);
+		}
+
+		public async Task<IEnumerable<ProductsEntity>> GetByIds(IEnumerable<Guid> ids)
+		{
+			return await _context.Products.Where(x => ids.Contains(x.Id)).ToListAsync();
+
+		}
+
+		public Task<IQueryable<ProductsEntity>> GetPopularAsyncs(int count)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

@@ -11,6 +11,8 @@ namespace MyMedic.DataAccess.Repositories.Interfaces
 	{
 		Task<IQueryable<ProductsEntity>> GetByCategoryAsync(Guid categoryId);
 		Task<IQueryable<ProductsEntity>> GetPopularAsync(int count);
+		
+		Task<IEnumerable<ProductsEntity>> GetByIds(IEnumerable<Guid> ids);
 		Task<IQueryable<ProductsEntity>> GetAllAsync();
 	}
 }

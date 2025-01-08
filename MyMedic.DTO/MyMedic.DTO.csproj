@@ -11,8 +11,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Helpers\Helpers.csproj" />
-    <ProjectReference Include="..\MyMedic.DataAccess\MyMedic.DataAccess.csproj" />
+	  <ProjectReference Include="..\Helpers\Helpers.csproj" />
+	  <ProjectReference Include="..\MyMedic.DataAccess\MyMedic.DataAccess.csproj" />
+	
   </ItemGroup>
+
+
 
 </Project>

@@ -1,5 +1,6 @@
 ﻿using Helpers;
 using Microsoft.EntityFrameworkCore;
+using MyMedic.DataAccess.Models;
 using MyMedic.DataAccess.Repositories.Interfaces;
 using MyMedic.DTO.Dto;
 using MyMedic.DTO.Mappers;
@@ -22,12 +23,37 @@ namespace MyMedic.Services.Implementations
 			_ordersMapper = ordersMapper;
 		}
 
-		public async Task AddOrder(OrderDto orderDto)
+		public async Task AddOrder(OrderCreateDto orderCreateDto, Guid userId)
 		{
+			var products = await _unitOfWork.Products.GetByIds(orderCreateDto.Products);
+			OrdersEntity orderEntity = new OrdersEntity
+			{
+				Id = Guid.NewGuid(),
+				CreatedAt = orderCreateDto.CreatedAt,
+				TotalAmount = orderCreateDto.TotalAmount,
+				UserAddress = orderCreateDto.UserAddress,
+				Paid = orderCreateDto.Paid,
+				Products = products.ToList(),
+				Status = orderCreateDto.Status,
+				UserId = userId,
+				UserPhone = orderCreateDto.UserPhone
 
-			var orderEntity = _ordersMapper.ToEntity(orderDto);
+			};
+		
 			await _unitOfWork.Orders.AddAsync(orderEntity);
+			try
+			{
+				await _unitOfWork.SaveChangeAsync();
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.InnerException.Message);
+				return;
+			}
+		
 		}
+
+		
 
 		public async Task<IEnumerable<OrderDto>> GetAllOrders(
 			bool byDate = false, 
