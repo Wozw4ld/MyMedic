@@ -28,6 +28,7 @@ builder.Services.AddScoped<IOrderService, OrderService>();
 
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddSwaggerGen();
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 	.AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>

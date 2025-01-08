@@ -10,10 +10,12 @@ namespace MyMedic.Controllers
 
 	public class UsersController : ControllerBase
 	{
+		private readonly IHttpContextAccessor _httpContext;
 		private readonly IUsersService _userService;
-		public UsersController(IUsersService userService)
+		public UsersController(IUsersService userService, IHttpContextAccessor httpContext)
 		{
 			_userService = userService;
+			_httpContext = httpContext;
 		}
 
 		//[HttpGet("{id:guid}")]
@@ -35,7 +37,7 @@ namespace MyMedic.Controllers
 		
 			var message = await _userService.UserRegister(user);
 
-			// Верните результат в виде подходящего IActionResult
+			
 			if (message == "Success")
 			{
 				return Ok(message); // HTTP 200 с данными ответа
@@ -47,6 +49,7 @@ namespace MyMedic.Controllers
 		public async Task<IActionResult> LoginUser(UserLoginDto user)
 		{
 			var token = await _userService.UserLogin(user);
+			 _httpContext.HttpContext?.Response.Cookies.Append("jwt", token);
 			return Ok(token);
 		}
 

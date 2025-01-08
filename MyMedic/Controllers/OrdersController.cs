@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MyMedic.DTO.Dto;
 using MyMedic.Services.Implementations;
 using MyMedic.Services.Interfaces;
@@ -14,13 +15,20 @@ namespace MyMedic.Controllers
 		{
 			_orderService = orderService;
 		}
+		[Authorize]
 		[HttpPost("add-order")]
 		public async Task<IActionResult> AddOrder(OrderCreateDto orderDto)
 		{
 			try
 			{
-				var tesTgUID = Guid.Parse("057f3e74-c495-48b3-8247-bc1d743b5b41");
-				await _orderService.AddOrder(orderDto, tesTgUID);
+				var userIdClaim = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "userId");
+				if (userIdClaim == null)
+				{
+					return Unauthorized("User ID not found in JWT.");
+				}
+				Guid userId = Guid.Parse(userIdClaim.Value);
+				//var tesTgUID = Guid.Parse("057f3e74-c495-48b3-8247-bc1d743b5b41");
+				await _orderService.AddOrder(orderDto, userId);
 				return Ok("Success");
 			}
 			catch(Exception ex)
@@ -30,6 +38,7 @@ namespace MyMedic.Controllers
 			
 			
 		}
+		[Authorize]
 		[HttpGet]
 		public async Task<IActionResult> GetAllOrders()
 		{
