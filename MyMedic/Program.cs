@@ -10,6 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using MyMedic.DTO.PasswordHasherService;
 using MyMedic.DTO.Mappers;
+using Helpers;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -22,6 +23,7 @@ builder.Services.AddScoped<UsersMapper>();
 builder.Services.AddScoped<ProductsMapper>();
 builder.Services.AddScoped<OrdersMapper>();
 builder.Services.AddScoped<CategoryMappers>();
+builder.Services.AddScoped<CookiesService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
