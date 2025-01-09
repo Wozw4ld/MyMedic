@@ -33,6 +33,8 @@ namespace MyMedic.Services.Implementations
 		}
 		public async Task<IEnumerable<CategoryDto>> GetAllCategories()
 		{
+			
+		
 			var categories = await _unitOfWork.Categories.GetAllCategoriesAsync();
 			return categories.Select(c => _mapper.ToDto(c));
 		}
