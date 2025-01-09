@@ -43,7 +43,7 @@ namespace Helpers.Builders
 		{
 			return new OrderQuery
 			{
-				UserId = _userId,
+				//UserId = _userId,
 				ByStatus = _byStatus,
 				ByDate = _byDate,
 				ByPaid = _byPaid,
@@ -53,7 +53,7 @@ namespace Helpers.Builders
 	}
 	public class OrderQuery
 	{
-		public Guid UserId { get; set; }
+		//public Guid UserId { get; set; }
 		public bool ByDate { get; set; }
 		public bool ByPrice { get; set; }
 		public OrderStatus? ByStatus { get; set; }

@@ -1,4 +1,5 @@
 ﻿using Helpers;
+using Helpers.Builders;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyMedic.DTO.Dto;
@@ -39,6 +40,18 @@ namespace MyMedic.Controllers
 			}
 			
 			
+		}
+		[Authorize]
+		[HttpPost("getByUserId")]
+		public async Task<IActionResult> GetOrdersByUserId(OrderQuery query)
+		{
+			var userId =  _cookiesService.GetUserIdFromCookie();
+			if (userId == null)
+			{
+				return Unauthorized();
+			}
+			return   Ok(await _orderService.GetUserOrders(userId, query));
+
 		}
 		[Authorize]
 		[HttpGet]

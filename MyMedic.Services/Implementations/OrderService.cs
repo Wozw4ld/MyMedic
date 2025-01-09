@@ -1,4 +1,5 @@
 ﻿using Helpers;
+using Helpers.Builders;
 using Microsoft.EntityFrameworkCore;
 using MyMedic.DataAccess.Models;
 using MyMedic.DataAccess.Repositories.Interfaces;
@@ -77,24 +78,21 @@ namespace MyMedic.Services.Implementations
 			return ordersList;
 
 		}
-
+		
 		public async Task<IEnumerable<OrderDto>> GetUserOrders(
-			Guid userId, 
-			bool byDate = false, 
-			bool byPrice = false, 
-			OrderStatus? byStatus = null, 
-			bool byPaid = false)
+			Guid userId,
+			OrderQuery order)
 		{
 			var result = _unitOfWork.Orders.GetUserOrders(userId);
-			if (byDate)
+			if (order.ByDate)
 
 				result.OrderBy(x => x.CreatedAt);
 
-			if (byPrice)
+			if (order.ByPrice)
 				result.OrderBy(x => x.TotalAmount);
-			if (byStatus.HasValue)
-				result.OrderBy(x => x.Status == byStatus);
-			if (byPaid)
+			if (order.ByStatus.HasValue)
+				result.OrderBy(x => x.Status == order.ByStatus);
+			if (order.ByPaid)
 				result.OrderBy(x => x.Paid);
 			var ordersList = await result.Select(x => _ordersMapper.ToDto(x)).ToListAsync();
 
