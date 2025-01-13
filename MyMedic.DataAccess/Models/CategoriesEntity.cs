@@ -14,6 +14,7 @@ namespace MyMedic.DataAccess.Models
 		public CategoriesEntity? ParentCategory { get; set; }
 		public List<CategoriesEntity>? SubCategories { get; set; }
 		public List<ProductsEntity> Products { get; set; } = new();
+		public List<ProductImages>? Images {  get; set; } 
 
 	}
 }

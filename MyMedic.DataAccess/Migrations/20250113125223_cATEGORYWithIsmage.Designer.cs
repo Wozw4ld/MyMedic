@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyMedic.DataAccess;
 
@@ -11,9 +12,11 @@ using MyMedic.DataAccess;
 namespace MyMedic.DataAccess.Migrations
 {
     [DbContext(typeof(MyMedicDbContext))]
-    partial class MyMedicDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250113125223_cATEGORYWithIsmage")]
+    partial class cATEGORYWithIsmage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

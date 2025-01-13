@@ -11,6 +11,9 @@ namespace MyMedic.DataAccess.Configurations
 			builder.HasKey(u => u.Id);
 			builder.HasOne(i => i.Product)
 				.WithMany(p => p.Images);
+			builder.HasOne(i => i.Category)
+				.WithMany(i => i.Images);
+			
 		}
 	}
 }

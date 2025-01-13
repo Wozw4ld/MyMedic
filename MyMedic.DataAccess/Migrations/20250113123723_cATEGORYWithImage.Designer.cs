@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyMedic.DataAccess;
 
@@ -11,9 +12,11 @@ using MyMedic.DataAccess;
 namespace MyMedic.DataAccess.Migrations
 {
     [DbContext(typeof(MyMedicDbContext))]
-    partial class MyMedicDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250113123723_cATEGORYWithImage")]
+    partial class cATEGORYWithImage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -96,7 +99,8 @@ namespace MyMedic.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("CategoryId")
+                        .IsUnique();
 
                     b.HasIndex("ProductId");
 
@@ -197,8 +201,8 @@ namespace MyMedic.DataAccess.Migrations
             modelBuilder.Entity("MyMedic.DataAccess.Models.ProductImages", b =>
                 {
                     b.HasOne("MyMedic.DataAccess.Models.CategoriesEntity", "Category")
-                        .WithMany("Images")
-                        .HasForeignKey("CategoryId")
+                        .WithOne("Image")
+                        .HasForeignKey("MyMedic.DataAccess.Models.ProductImages", "CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -239,7 +243,7 @@ namespace MyMedic.DataAccess.Migrations
 
             modelBuilder.Entity("MyMedic.DataAccess.Models.CategoriesEntity", b =>
                 {
-                    b.Navigation("Images");
+                    b.Navigation("Image");
 
                     b.Navigation("Products");
 

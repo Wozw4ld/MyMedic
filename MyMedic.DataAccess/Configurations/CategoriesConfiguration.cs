@@ -13,6 +13,9 @@ namespace MyMedic.DataAccess.Configurations
 				.WithOne(o => o.Category);
 			builder.HasOne(p => p.ParentCategory)
 				.WithMany(p => p.SubCategories);
+			builder.HasMany(c => c.Images)
+				.WithOne(i => i.Category)
+			;
 		}
 	}
 }

@@ -11,6 +11,8 @@ namespace MyMedic.DataAccess.Models
 		public Guid Id { get; set; }
 		public string ImageUrl { get; set; } = string.Empty;
 		public Guid ProductId { get; set; }
+		public Guid CategoryId { get; set; }
 		public ProductsEntity? Product { get; set; }
+		public CategoriesEntity? Category { get; set; }
 	}	
 }
