@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace MyMedic.DataAccess.Models
 {
-	public class ProductImages
+	public class CategoryImages
 	{
 		public Guid Id { get; set; }
 		public string ImageUrl { get; set; } = string.Empty;
-		public Guid ProductId { get; set; }
-		public ProductsEntity? Product { get; set; }
+		public Guid CategoryId { get; set; }
+		public CategoriesEntity? Category { get; set; }
 
-	}	
+	}
 }

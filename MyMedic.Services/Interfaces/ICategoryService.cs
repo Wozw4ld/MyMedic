@@ -9,7 +9,8 @@ namespace MyMedic.Services.Interfaces
 {
 	public interface ICategoryService
 	{
-		public Task<string> AddCategory(CategoryDto category);
-		public Task<IEnumerable<CategoryDto>> GetAllCategories();	
+		public Task<string> AddCategory(CategoryCreateDto category);
+		public Task<IEnumerable<CategoryDto>> GetAllCategories();
+		public Task<IEnumerable<CategoryDto>> GetMainCategories();
 	}
 }

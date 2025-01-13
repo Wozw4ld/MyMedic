@@ -28,6 +28,7 @@ namespace MyMedic.DataAccess.Repositories.Repositories
 			return await _context.Categories
 				
 				.Include(c => c.SubCategories)
+				.Include(c => c.Images)
 				.ToListAsync();
  				
 				}
@@ -37,7 +38,18 @@ namespace MyMedic.DataAccess.Repositories.Repositories
 			throw new NotImplementedException();
 		}
 
-		
+		//public async Task<IEnumerable<CategoriesEntity>> GetMainCategories()
+		//{
+		//	return await _context.Categories
+		//		.Include(c => c.SubCategories)
+		//		.Include(c => c.Images)
+		//		.Where(c => c.ParentCategoryId == null) 
+		//		.ToListAsync(); 
+		//}		
+		public async Task<IQueryable<CategoriesEntity>> GetMainCategories()
+		{
+			return _context.Categories.AsQueryable();
+		}
 
 		public async Task<IEnumerable<CategoriesEntity?>> GetSubCategoriesAsync(Guid id)
 		{

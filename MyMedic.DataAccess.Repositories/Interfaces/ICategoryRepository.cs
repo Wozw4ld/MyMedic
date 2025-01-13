@@ -11,5 +11,6 @@ namespace MyMedic.DataAccess.Repositories.Interfaces
 	{
 		Task<IEnumerable<CategoriesEntity?>> GetSubCategoriesAsync(Guid id);
 		Task<IEnumerable<CategoriesEntity>> GetAllCategoriesAsync();
+		Task<IQueryable<CategoriesEntity>> GetMainCategories();
 	}
 }

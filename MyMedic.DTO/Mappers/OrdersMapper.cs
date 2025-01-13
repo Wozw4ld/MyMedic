@@ -42,6 +42,7 @@ namespace MyMedic.DTO.Mappers
 
 			};
 		}
+	
 		public OrdersEntity ToEntity(OrderDto dto)
 		{
 			return new OrdersEntity
