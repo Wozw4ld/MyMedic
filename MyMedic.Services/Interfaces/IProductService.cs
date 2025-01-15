@@ -13,7 +13,7 @@ namespace MyMedic.Services.Interfaces
 	public interface IProductService
 	{
 		public Task<PagedResult<ProductDto>> GetAllProducts(int page, int count);
-		public Task<ProductsEntity> GetProduct(Guid id);
+		public Task<ProductDto> GetProduct(Guid id);
 		public Task<PagedResult<ProductDto>> GetByCategory(Guid categoryId, int page, int count);
 		public Task<PagedResult<ProductDto>> GetByName(string name);
 		public Task<string> AddProductAsync(ProductCreateDto product);

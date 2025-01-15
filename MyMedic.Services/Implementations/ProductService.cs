@@ -1,6 +1,7 @@
 ﻿using Helpers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
+using Microsoft.OpenApi.Validations;
 using MyMedic.DataAccess.Models;
 using MyMedic.DataAccess.Repositories.Interfaces;
 using MyMedic.DataAccess.Repositories.Repositories;
@@ -95,10 +96,11 @@ namespace MyMedic.Services.Implementations
 			throw new NotImplementedException();
 		}
 
-		public Task<ProductsEntity> GetProduct(Guid id)
+		public async Task<ProductDto> GetProduct(Guid id)
 		{
-			var product = _unitOfWork.Products.GetByIdAsync(id);
-			return product;
+			var product =  _unitOfWork.Products.GetByIdAsync(id).Result;
+			return _productsMapper.ToDto( product);
+			
 		}
 
 	}

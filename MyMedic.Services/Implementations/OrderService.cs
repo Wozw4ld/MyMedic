@@ -54,14 +54,17 @@ namespace MyMedic.Services.Implementations
 		
 		}
 
-		
 
+		
 		public async Task<IEnumerable<OrderDto>> GetAllOrders(
+		
 			bool byDate = false, 
 			bool byPrice = false, 
 			OrderStatus? byStatus = null, 
 			bool byPaid = false)
 		{
+		
+			
 		var result = _unitOfWork.Orders.GetAllOrders();
 			if(byDate)
 			

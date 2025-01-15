@@ -39,7 +39,7 @@ namespace MyMedic.DataAccess.Repositories.Repositories
 
 		public async Task<ProductsEntity> GetByIdAsync(Guid id)
 		{
-			var product =  await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
+			var product =  await _context.Products.Include(x => x.Images).FirstOrDefaultAsync(p => p.Id == id);
 			return product;
 		}
 

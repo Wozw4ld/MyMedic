@@ -73,6 +73,7 @@ namespace MyMedic.DataAccess.Repositories.Repositories
 			{
 				_context.Categories.Remove(category);
 			}
+			
 		}
 
 		public async Task UpdateAsync(CategoriesEntity entity)
