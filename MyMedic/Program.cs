@@ -31,6 +31,15 @@ builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddCors(options =>
+{
+	options.AddPolicy("AllowReact", policy =>
+	{
+		policy.WithOrigins("http://localhost:5173") // Адрес React приложения
+			  .AllowAnyHeader()
+			  .AllowAnyMethod();
+	});
+});
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 	.AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
@@ -77,7 +86,7 @@ else
 	app.UseExceptionHandler("/Home/Error");
 	app.UseHsts();
 }
-
+app.UseCors("AllowReact");
 // Middleware
 app.UseHttpsRedirection();
 app.UseStaticFiles();

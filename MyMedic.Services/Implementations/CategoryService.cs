@@ -50,6 +50,12 @@ namespace MyMedic.Services.Implementations
 			return categories.Select(c => _mapper.ToDto(c)).ToList();
 		}
 
+		public async Task<IEnumerable<CategoryDto>> GetByParentId(Guid parentId)
+		{
+			var data =  await _unitOfWork.Categories.GetByParentId(parentId);
+			return data.Select(x => _mapper.ToDto(x));
+		}
+
 		public async Task<IEnumerable<CategoryDto>> GetMainCategories()
 		{
 			var categories =  _unitOfWork.Categories.GetAllCategoriesAsync();

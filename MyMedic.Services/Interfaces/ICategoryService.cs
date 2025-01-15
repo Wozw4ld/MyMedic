@@ -12,5 +12,6 @@ namespace MyMedic.Services.Interfaces
 		public Task<string> AddCategory(CategoryCreateDto category);
 		public Task<IEnumerable<CategoryDto>> GetAllCategories();
 		public Task<IEnumerable<CategoryDto>> GetMainCategories();
+		public Task<IEnumerable<CategoryDto>> GetByParentId(Guid parentId);
 	}
 }

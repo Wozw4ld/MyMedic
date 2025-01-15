@@ -31,8 +31,14 @@ namespace MyMedic.Controllers
 		[HttpGet("mainCategories")]
 		public async Task<IActionResult> GetMainCategories()
 		{
-			var data = _categoryService.GetMainCategories();
+			var data =  _categoryService.GetMainCategories();
 			return Ok(data);
+		}
+		[HttpGet("getByParentId")]
+		public async Task<IActionResult> GetByParentId(Guid parentId)
+		{
+			var data = await _categoryService.GetByParentId(parentId);
+			return Ok(data);	
 		}
 	}
 }

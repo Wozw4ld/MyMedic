@@ -38,6 +38,11 @@ namespace MyMedic.DataAccess.Repositories.Repositories
 			throw new NotImplementedException();
 		}
 
+		public async Task<IEnumerable<CategoriesEntity>> GetByParentId(Guid parentId)
+		{
+			return await _context.Categories.Where(x => x.ParentCategoryId == parentId).Include(c => c.Images).ToListAsync();
+		}
+
 		//public async Task<IEnumerable<CategoriesEntity>> GetMainCategories()
 		//{
 		//	return await _context.Categories
