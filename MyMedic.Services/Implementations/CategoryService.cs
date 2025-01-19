@@ -56,6 +56,12 @@ namespace MyMedic.Services.Implementations
 			return data.Select(x => _mapper.ToDto(x));
 		}
 
+		public async Task<IEnumerable<CategoryLinkDto>> GetCategoriesLink(Guid categoryId)
+		{
+			var data = await _unitOfWork.Categories.GetCategoriesLink(categoryId);
+			return data;
+		}
+
 		public async Task<IEnumerable<CategoryDto>> GetMainCategories()
 		{
 			var categories =  _unitOfWork.Categories.GetAllCategoriesAsync();

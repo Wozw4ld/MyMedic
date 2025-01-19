@@ -1,4 +1,5 @@
 ﻿using MyMedic.DataAccess.Models;
+using MyMedic.DTO.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace MyMedic.DataAccess.Repositories.Interfaces
 		Task<IEnumerable<CategoriesEntity>> GetAllCategoriesAsync();
 		Task<IQueryable<CategoriesEntity>> GetMainCategories();
 		Task<IEnumerable<CategoriesEntity>> GetByParentId(Guid parentId);
+		Task<IEnumerable<CategoryLinkDto>> GetCategoriesLink(Guid categoryId);
 	}
 }

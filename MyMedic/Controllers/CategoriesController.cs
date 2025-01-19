@@ -40,5 +40,12 @@ namespace MyMedic.Controllers
 			var data = await _categoryService.GetByParentId(parentId);
 			return Ok(data);	
 		}
+		[HttpGet("getCategoriesLinkList")]
+		public async Task<IActionResult> GetCategoriesLinkList(Guid parentId)
+		{
+			var data = await _categoryService.GetCategoriesLink(parentId);
+			return Ok(data);	
+		}
+
 	}
 }

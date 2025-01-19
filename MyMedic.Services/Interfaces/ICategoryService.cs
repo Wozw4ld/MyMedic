@@ -13,5 +13,6 @@ namespace MyMedic.Services.Interfaces
 		public Task<IEnumerable<CategoryDto>> GetAllCategories();
 		public Task<IEnumerable<CategoryDto>> GetMainCategories();
 		public Task<IEnumerable<CategoryDto>> GetByParentId(Guid parentId);
+		public Task<IEnumerable<CategoryLinkDto>> GetCategoriesLink(Guid categoryId);
 	}
 }

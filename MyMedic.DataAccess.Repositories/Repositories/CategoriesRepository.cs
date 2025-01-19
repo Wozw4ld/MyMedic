@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using MyMedic.DataAccess.Models;
 using MyMedic.DataAccess.Repositories.Interfaces;
+using MyMedic.DTO.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -75,12 +77,45 @@ namespace MyMedic.DataAccess.Repositories.Repositories
 			}
 			
 		}
+		public async Task<IEnumerable<CategoryLinkDto>> GetCategoriesLink(Guid categoryId)
+		{
+			List<CategoryLinkDto> categoryList = [] ;
+			bool parentIdNullable = false;
+			Guid guid = categoryId;
+			while (parentIdNullable == false)
+			{
+				var data = await _context.Categories.FirstOrDefaultAsync(x => x.Id == guid);
+				Console.WriteLine(categoryList.LongCount());
+				if(data != null) {
+					Console.WriteLine(data.Id);
+					categoryList.Add(new CategoryLinkDto { Id = data.Id, Name = data.CategoryName });
+
+					if (data.ParentCategoryId != null)
+					{
+						guid = (Guid)data.ParentCategoryId;
+							}
+					else {
+						parentIdNullable = true;
+					}
+
+					
+
+
+				}
+				else
+				{
+					return categoryList;
+				}
+			}
+			return categoryList;
+		
+		}
 
 		public async Task UpdateAsync(CategoriesEntity entity)
 		{
 			_context.Categories.Update(entity);
 		}
 
-	
+		
 	}
 }
