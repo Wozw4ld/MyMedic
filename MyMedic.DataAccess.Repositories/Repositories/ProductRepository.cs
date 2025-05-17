@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.Json;
 using MyMedic.DataAccess.Models;
 using MyMedic.DataAccess.Repositories.Interfaces;
+using MyMedic.DTO.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,5 +74,10 @@ namespace MyMedic.DataAccess.Repositories.Repositories
 		{
 			throw new NotImplementedException();
 		}
+
+		//public async Task<IEnumerable<CategoryLinkDto>> GetParentsId(Guid productId)
+		//{
+		
+		//}
 	}
 }

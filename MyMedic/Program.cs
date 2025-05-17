@@ -70,22 +70,15 @@ builder.Services.AddDbContext<MyMedicDbContext>(
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+// После app.UseRouting():
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-	app.UseDeveloperExceptionPage(); // Для удобной отладки
-	app.UseSwagger();
-	app.UseSwaggerUI(c =>
-	{
-		c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyMedic API V1");
-		c.RoutePrefix = "swagger"; // Swagger будет доступен по URL корня (localhost:5000)
-	});
-}
-else
-{
-	app.UseExceptionHandler("/Home/Error");
-	app.UseHsts();
-}
+	c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyMedic API V1");
+	// Можно настроить точку доступа:
+	// c.RoutePrefix = string.Empty; // чтобы UI открывался по корню: https://yourdomain.com/
+});
+
 app.UseCors("AllowReact");
 // Middleware
 app.UseHttpsRedirection();
